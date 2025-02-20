@@ -1,13 +1,15 @@
 {
   "$schema": "https://json.schemastore.org/template",
   "author": "Vladislav Zainullin",
+  "identity": "Architecture",
+  "name": "Architecture",
+  "shortName": "a-sln",
+  "preferNameDirectory": true,
   "classifications": [
     "Web",
     "ASP.NET"
   ],
-  "identity": "Architecture",
-  "name": "Architecture",
-  "shortName": "a-sln",
+  "sourceName": "Architecture",
   "tags": {
     "language": "C#",
     "type": "project"
