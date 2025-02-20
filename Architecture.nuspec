@@ -1,0 +1,12 @@
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Architecture</id>
+    <version>9.0.0</version>
+    <title>Architecture solution template</title>
+    <description>Architecture solution template for .NET 9</description>
+    <authors>Vladislav Zainullin</authors>
+    <packageTypes>
+      <packageType name="Template" />
+    </packageTypes>
+  </metadata>
+</package>
