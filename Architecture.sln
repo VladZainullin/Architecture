@@ -9,13 +9,22 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Directory.Build.props = Directory.Build.props
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{10E55D1E-543C-4C25-BEA3-CE9756739495}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{623DDB95-37A3-40E5-8130-627E35EC9ACD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{623DDB95-37A3-40E5-8130-627E35EC9ACD} = {10E55D1E-543C-4C25-BEA3-CE9756739495}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{623DDB95-37A3-40E5-8130-627E35EC9ACD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{623DDB95-37A3-40E5-8130-627E35EC9ACD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{623DDB95-37A3-40E5-8130-627E35EC9ACD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{623DDB95-37A3-40E5-8130-627E35EC9ACD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
