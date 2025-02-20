@@ -8,7 +8,7 @@ namespace Persistence;
 internal class DbSetAdapter<T>(DbContext context) : IDbSet<T> where T : class
 {
     private readonly DbSet<T> _set = context.Set<T>();
-    
+
     public void Update(T entity)
     {
         _set.Update(entity);
@@ -47,7 +47,8 @@ internal class DbSetAdapter<T>(DbContext context) : IDbSet<T> where T : class
     public Type ElementType => ((IQueryable<T>)_set).ElementType;
     public Expression Expression => ((IQueryable<T>)_set).Expression;
     public IQueryProvider Provider => ((IQueryable<T>)_set).Provider;
-    public IAsyncEnumerator<T> GetAsyncEnumerator(CancellationToken cancellationToken = new CancellationToken())
+
+    public IAsyncEnumerator<T> GetAsyncEnumerator(CancellationToken cancellationToken = new())
     {
         return ((IAsyncEnumerable<T>)_set).GetAsyncEnumerator(cancellationToken);
     }

@@ -28,14 +28,14 @@ public static class DependencyInjection
                         npgsqlConnectionStringBuilder.SearchPath);
                 });
         });
-        
+
         builder.Services.AddScoped<DbContext>(sp => sp.GetRequiredService<AppDbContext>());
         builder.Services.AddScoped<DbContextAdapter>();
-        
+
         builder.Services.AddScoped<IDbContext>(sp => sp.GetRequiredService<DbContextAdapter>());
         builder.Services.AddScoped<IMigrationContext>(sp => sp.GetRequiredService<DbContextAdapter>());
         builder.Services.AddScoped<ITransactionContext>(sp => sp.GetRequiredService<DbContextAdapter>());
-        
+
         return builder;
     }
 }

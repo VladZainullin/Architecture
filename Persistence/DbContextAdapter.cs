@@ -1,17 +1,16 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
 using Persistence.Contracts;
 
 namespace Persistence;
 
-internal sealed class DbContextAdapter(AppDbContext context) : 
+internal sealed class DbContextAdapter(AppDbContext context) :
     IDbContext,
     IMigrationContext,
     ITransactionContext
 {
     public Task SaveChangesAsync(CancellationToken cancellationToken)
     {
-        return context.SaveChangesAsync(cancellationToken: cancellationToken);
+        return context.SaveChangesAsync(cancellationToken);
     }
 
     public async Task MigrateAsync(CancellationToken cancellationToken = default)

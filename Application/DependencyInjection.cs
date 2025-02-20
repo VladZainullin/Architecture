@@ -12,7 +12,7 @@ public static class DependencyInjection
         {
             mediatrServiceConfiguration.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
         });
-        
+
         return builder;
     }
 }
