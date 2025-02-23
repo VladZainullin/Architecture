@@ -1,9 +1,10 @@
 {
   "$schema": "https://json.schemastore.org/template",
   "author": "Vladislav Zainullin",
-  "identity": "Architecture",
-  "name": "Architecture",
+  "identity": "Architecture.Solution.CSharp",
+  "name": "Architecture Solution",
   "shortName": "a-sln",
+  "sourceName": "Architecture",
   "preferNameDirectory": true,
   "classifications": [
     "Web",
