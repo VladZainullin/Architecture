@@ -22,10 +22,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{7A7D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{86262EFC-52F4-4652-9676-A5C5EB52DA4E}"
 	ProjectSection(SolutionItems) = preProject
-		.gitignore = .gitignore
-		Directory.Build.props = Directory.Build.props
-		Directory.Packages.props = Directory.Packages.props
-		global.json = global.json
+		content\.gitignore = content\.gitignore
+		content\Directory.Build.props = content\Directory.Build.props
+		content\Directory.Packages.props = content\Directory.Packages.props
+		content\global.json = content\global.json
 	EndProjectSection
 EndProject
 Global
