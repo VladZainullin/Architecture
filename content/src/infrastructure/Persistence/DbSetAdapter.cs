@@ -9,46 +9,56 @@ internal class DbSetAdapter<T>(DbContext context) : IDbSet<T> where T : class
 {
     private readonly DbSet<T> _set = context.Set<T>();
 
-    public void Update(T entity)
+    public virtual void Update(T entity)
     {
         _set.Update(entity);
     }
 
-    public void UpdateRange(IEnumerable<T> entities)
+    public virtual void UpdateRange(IEnumerable<T> entities)
     {
         _set.UpdateRange(entities);
     }
 
-    public void Add(T entity)
+    public virtual void Add(T entity)
     {
         _set.Add(entity);
     }
 
-    public void AddRange(IEnumerable<T> entities)
+    public virtual void AddRange(IEnumerable<T> entities)
     {
         _set.AddRange(entities);
     }
 
-    public void Remove(T entity)
+    public virtual void Remove(T entity)
     {
         _set.Remove(entity);
     }
 
-    public void RemoveRange(IEnumerable<T> entities)
+    public virtual void RemoveRange(IEnumerable<T> entities)
     {
         _set.RemoveRange(entities);
     }
 
-    public IEnumerator<T> GetEnumerator()
+    public virtual void Attach(T entity)
+    {
+        _set.Attach(entity);
+    }
+
+    public virtual void AttachRanga(IEnumerable<T> entities)
+    {
+        _set.AttachRange(entities);
+    }
+
+    public virtual IEnumerator<T> GetEnumerator()
     {
         return ((IQueryable<T>)_set).GetEnumerator();
     }
 
-    public Type ElementType => ((IQueryable<T>)_set).ElementType;
-    public Expression Expression => ((IQueryable<T>)_set).Expression;
-    public IQueryProvider Provider => ((IQueryable<T>)_set).Provider;
+    public virtual Type ElementType => ((IQueryable<T>)_set).ElementType;
+    public virtual Expression Expression => ((IQueryable<T>)_set).Expression;
+    public virtual IQueryProvider Provider => ((IQueryable<T>)_set).Provider;
 
-    public IAsyncEnumerator<T> GetAsyncEnumerator(CancellationToken cancellationToken = new())
+    public virtual IAsyncEnumerator<T> GetAsyncEnumerator(CancellationToken cancellationToken = new())
     {
         return ((IAsyncEnumerable<T>)_set).GetAsyncEnumerator(cancellationToken);
     }

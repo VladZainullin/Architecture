@@ -13,4 +13,8 @@ public interface IDbSet<T> : IQueryable<T>, IAsyncEnumerable<T>
     void Remove(T entity);
 
     void RemoveRange(IEnumerable<T> entities);
+
+    void Attach(T entity);
+
+    void AttachRanga(IEnumerable<T> entities);
 }
