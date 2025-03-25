@@ -26,7 +26,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		content\Directory.Build.props = content\Directory.Build.props
 		content\Directory.Packages.props = content\Directory.Packages.props
 		content\global.json = content\global.json
-		NuGet.config = NuGet.config
+		content\NuGet.config = content\NuGet.config
 	EndProjectSection
 EndProject
 Global
