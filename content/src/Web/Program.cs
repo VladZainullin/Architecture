@@ -9,42 +9,50 @@ file static class Program
 {
     public static async Task Main(string[] args)
     {
-        var configuration = new ConfigurationBuilder()
-            .AddEnvironmentVariables()
-            .Build();
-
+        var builder = WebApplication.CreateBuilder(args);
+        
         await using var logger = new LoggerConfiguration()
-            .ReadFrom.Configuration(configuration)
+            .ReadFrom.Configuration(builder.Configuration)
             .CreateLogger();
 
-        var builder = WebApplication.CreateBuilder(args);
-
-        if (builder.Environment.IsDevelopment())
+        try
         {
-            builder.Host.UseDefaultServiceProvider(static serviceProviderOptions =>
+            builder.Host.UseSerilog(logger);
+            
+            if (builder.Environment.IsDevelopment())
             {
-                serviceProviderOptions.ValidateScopes = true;
-                serviceProviderOptions.ValidateOnBuild = true;
-            });
+                builder.Host.UseDefaultServiceProvider(static serviceProviderOptions =>
+                {
+                    serviceProviderOptions.ValidateScopes = true;
+                    serviceProviderOptions.ValidateOnBuild = true;
+                });
+            }
+
+            builder
+                .AddPersistence()
+                .AddApplication()
+                .AddWeb();
+
+            await using var app = builder.Build();
+
+            if (app.Environment.IsProduction()) app.UseHsts();
+            
+            if (app.Environment.IsDevelopment())
+            {
+                app.MapOpenApi();
+                app.MapScalarApiReference();
+            }
+
+            app.MapHealthChecks("/health");
+
+            await app.RunAsync();
         }
-        
-        builder
-            .AddPersistence()
-            .AddApplication()
-            .AddWeb();
-
-        await using var app = builder.Build();
-
-        if (app.Environment.IsProduction()) app.UseHsts();
-
-        if (app.Environment.IsDevelopment())
+        catch (HostAbortedException)
         {
-            app.MapOpenApi();
-            app.MapScalarApiReference();
         }
-
-        app.MapHealthChecks("/health");
-
-        await app.RunAsync();
+        catch (Exception e)
+        {
+            logger.Fatal(e, "Application not started");
+        }
     }
 }
