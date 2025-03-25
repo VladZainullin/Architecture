@@ -4,12 +4,12 @@
         <PackageType>Template</PackageType>
         <PackageVersion>9.0.0</PackageVersion>
         <PackageId>Architecture.Solution.Template</PackageId>
-        <Title>AdatumCorporation Templates</Title>
+        <IsPackable>true</IsPackable>
         <Authors>Vladislav Zainullin</Authors>
-        <Description>Templates to use when creating an application for Adatum Corporation.</Description>
-        <PackageTags>dotnet-new;templates;contoso</PackageTags>
-        <TargetFramework>netstandard2.0</TargetFramework>
-
+        <Description>Architecture solution template for .NET 9.</Description>
+        <TargetFramework>net9.0</TargetFramework>
+        <RepositoryUrl>https://github.com/VladZainullin/Architecture</RepositoryUrl>
+        <License>MIT</License>
         <IncludeContentInPack>true</IncludeContentInPack>
         <IncludeBuildOutput>false</IncludeBuildOutput>
         <ContentTargetFolders>content</ContentTargetFolders>
