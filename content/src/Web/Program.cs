@@ -19,6 +19,15 @@ file static class Program
 
         var builder = WebApplication.CreateBuilder(args);
 
+        if (builder.Environment.IsDevelopment())
+        {
+            builder.Host.UseDefaultServiceProvider(static serviceProviderOptions =>
+            {
+                serviceProviderOptions.ValidateScopes = true;
+                serviceProviderOptions.ValidateOnBuild = true;
+            });
+        }
+        
         builder
             .AddPersistence()
             .AddApplication()
