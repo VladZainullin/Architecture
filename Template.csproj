@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <PackageType>Template</PackageType>
+        <PackageVersion>9.0.0</PackageVersion>
+        <PackageId>Architecture.Solution.Template</PackageId>
+        <Title>AdatumCorporation Templates</Title>
+        <Authors>Vladislav Zainullin</Authors>
+        <Description>Templates to use when creating an application for Adatum Corporation.</Description>
+        <PackageTags>dotnet-new;templates;contoso</PackageTags>
+        <TargetFramework>netstandard2.0</TargetFramework>
+
+        <IncludeContentInPack>true</IncludeContentInPack>
+        <IncludeBuildOutput>false</IncludeBuildOutput>
+        <ContentTargetFolders>content</ContentTargetFolders>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Content Include="content\**\*" Exclude="content\**\bin\**;content\**\obj\**" />
+        <Compile Remove="**\*" />
+    </ItemGroup>
+
+</Project>

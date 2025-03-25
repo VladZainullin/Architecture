@@ -13,5 +13,16 @@
   "tags": {
     "language": "C#",
     "type": "solution"
-  }
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "rename": {
+            "gitignore": ".gitignore"
+          }
+        }
+      ]
+    }
+  ]
 }
