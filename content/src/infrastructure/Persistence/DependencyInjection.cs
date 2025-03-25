@@ -13,7 +13,7 @@ public static class DependencyInjection
     public static IHostApplicationBuilder AddPersistence(this IHostApplicationBuilder builder)
     {
         builder.Services.AddOptions<NpgsqlConnectionStringBuilder>().BindConfiguration("Postgres");
-        builder.Services.AddDbContextPool<AppDbContext>((sp, options) =>
+        builder.Services.AddDbContextPool<AppDbContext>(static (sp, options) =>
         {
             var npgsqlConnectionStringBuilderOptions = sp.GetRequiredService<IOptions<NpgsqlConnectionStringBuilder>>();
             var npgsqlConnectionStringBuilder = npgsqlConnectionStringBuilderOptions.Value;
@@ -29,12 +29,15 @@ public static class DependencyInjection
                 });
         });
 
-        builder.Services.AddScoped<DbContext>(sp => sp.GetRequiredService<AppDbContext>());
+        builder.Services.AddScoped<DbContext>(static sp => sp.GetRequiredService<AppDbContext>());
         builder.Services.AddScoped<DbContextAdapter>();
 
-        builder.Services.AddScoped<IDbContext>(sp => sp.GetRequiredService<DbContextAdapter>());
-        builder.Services.AddScoped<IMigrationContext>(sp => sp.GetRequiredService<DbContextAdapter>());
-        builder.Services.AddScoped<ITransactionContext>(sp => sp.GetRequiredService<DbContextAdapter>());
+        var getDbContextAdapter = 
+            static (IServiceProvider sp) => sp.GetRequiredService<DbContextAdapter>();
+        
+        builder.Services.AddScoped<IDbContext>(getDbContextAdapter);
+        builder.Services.AddScoped<IMigrationContext>(getDbContextAdapter);
+        builder.Services.AddScoped<ITransactionContext>(getDbContextAdapter);
 
         return builder;
     }
