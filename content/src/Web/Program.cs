@@ -34,8 +34,10 @@ file static class Program
                 .AddWeb();
 
             await using var app = builder.Build();
-
+            
             if (app.Environment.IsProduction()) app.UseHsts();
+
+            app.UseHttpsRedirection();
             
             if (app.Environment.IsDevelopment())
             {
