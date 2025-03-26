@@ -1,23 +1,29 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <PackageType>Template</PackageType>
-        <PackageVersion>9.0.0</PackageVersion>
-        <PackageId>Architecture.Solution.Template</PackageId>
-        <IsPackable>true</IsPackable>
-        <Authors>Vladislav Zainullin</Authors>
-        <Description>Architecture solution template for .NET 9.</Description>
         <TargetFramework>net9.0</TargetFramework>
-        <RepositoryUrl>https://github.com/VladZainullin/Architecture</RepositoryUrl>
-        <License>MIT</License>
-        <IncludeContentInPack>true</IncludeContentInPack>
-        <IncludeBuildOutput>false</IncludeBuildOutput>
-        <ContentTargetFolders>content</ContentTargetFolders>
+        <IncludeBuildOutput>False</IncludeBuildOutput>
+        <IncludeSource>False</IncludeSource>
+        <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+        <EnableDefaultItems>False</EnableDefaultItems>
+        <IsPackable>true</IsPackable>
+        <IsShipping>true</IsShipping>
+        <IsShippingPackage>true</IsShippingPackage>
+        <NoPackageAnalysis>true</NoPackageAnalysis>
+        <PackageId>Architecture.Solution.Template</PackageId>
+        <Authors>Vladislav Zainullin</Authors>
+        <Description>Architecture solution template for .NET 9</Description>
+        <language>en-US</language>
+        <PackageProjectUrl>https://github.com/VladZainullin/Architecture</PackageProjectUrl>
+        <PackageType>Template</PackageType>
+        <SuppressDependenciesWhenPacking>True</SuppressDependenciesWhenPacking>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
 
     <ItemGroup>
-        <Content Include="content\**\*" Exclude="content\**\bin\**;content\**\obj\**" />
-        <Compile Remove="**\*" />
+        <Content Include="content\**">
+            <PackagePath>content</PackagePath>
+        </Content>
     </ItemGroup>
 
 </Project>
