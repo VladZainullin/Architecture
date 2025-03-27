@@ -4,7 +4,7 @@
         <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions"/>
     </ItemGroup>
     <ItemGroup>
-      <ProjectReference Include="..\contracts\Application.Contracts\Application.Contracts.csproj" />
-      <ProjectReference Include="..\contracts\Persistence.Contracts\Persistence.Contracts.csproj" />
+      <ProjectReference Include="..\Application.Contracts\Application.Contracts.csproj" />
+      <ProjectReference Include="..\Persistence.Contracts\Persistence.Contracts.csproj" />
     </ItemGroup>
 </Project>

@@ -7,6 +7,6 @@
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL"/>
     </ItemGroup>
     <ItemGroup>
-        <ProjectReference Include="..\..\contracts\Persistence.Contracts\Persistence.Contracts.csproj"/>
+        <ProjectReference Include="..\Persistence.Contracts\Persistence.Contracts.csproj"/>
     </ItemGroup>
 </Project>
