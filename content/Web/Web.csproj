@@ -6,6 +6,10 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks"/>
+        <!--#if(UseMiniProfilerAspNetCore)-->
+        <PackageReference Include="MiniProfiler.AspNetCore.Mvc" />
+        <PackageReference Include="MiniProfiler.EntityFrameworkCore" />
+        <!--#endif-->
         <!--#if(UseScalarAspNetCore)-->
         <PackageReference Include="Scalar.AspNetCore"/>
         <!--#endif-->

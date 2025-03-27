@@ -16,6 +16,10 @@
     <PackageVersion Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="9.0.3" />
     <PackageVersion Include="Microsoft.Extensions.Hosting.Abstractions" Version="9.0.3" />
     <PackageVersion Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.3" />
+    <!--#if(UseMiniProfilerAspNetCore)-->
+    <PackageVersion Include="MiniProfiler.AspNetCore.Mvc" Version="4.5.4" />
+    <PackageVersion Include="MiniProfiler.EntityFrameworkCore" Version="4.5.4" />
+    <!--#endif-->
     <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
     <!--#if(UseScalarAspNetCore)-->
     <PackageVersion Include="Scalar.AspNetCore" Version="2.1.2" />
