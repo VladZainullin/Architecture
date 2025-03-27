@@ -30,6 +30,11 @@
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": false
+    },
+    "UseMiniProfilerAspNetCore": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": false
     }
   }
 }
