@@ -8,14 +8,14 @@ internal sealed class DbContextAdapter(AppDbContext context) :
     IMigrationContext,
     ITransactionContext
 {
-    public Task SaveChangesAsync(CancellationToken cancellationToken)
+    public Task<int> SaveChangesAsync(CancellationToken cancellationToken)
     {
         return context.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task MigrateAsync(CancellationToken cancellationToken = default)
+    public Task MigrateAsync(CancellationToken cancellationToken = default)
     {
-        await context.Database.MigrateAsync(cancellationToken);
+        return context.Database.MigrateAsync(cancellationToken);
     }
 
     public Task BeginTransactionAsync(CancellationToken cancellationToken)

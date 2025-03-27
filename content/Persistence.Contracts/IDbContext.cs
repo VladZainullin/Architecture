@@ -2,5 +2,5 @@ namespace Persistence.Contracts;
 
 public interface IDbContext
 {
-    Task SaveChangesAsync(CancellationToken cancellationToken = default);
+    Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }
