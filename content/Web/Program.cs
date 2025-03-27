@@ -1,7 +1,9 @@
 using Application;
 using Persistence;
-using Scalar.AspNetCore;
 using Serilog;
+#if UseScalarAspNetCore
+using Scalar.AspNetCore;
+#endif
 
 namespace Web;
 
@@ -10,7 +12,7 @@ file static class Program
     public static async Task Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
-        
+
         await using var logger = new LoggerConfiguration()
             .ReadFrom.Configuration(builder.Configuration)
             .CreateLogger();
@@ -18,15 +20,13 @@ file static class Program
         try
         {
             builder.Host.UseSerilog(logger);
-            
+
             if (builder.Environment.IsDevelopment())
-            {
                 builder.Host.UseDefaultServiceProvider(static serviceProviderOptions =>
                 {
                     serviceProviderOptions.ValidateScopes = true;
                     serviceProviderOptions.ValidateOnBuild = true;
                 });
-            }
 
             builder
                 .AddPersistence()
@@ -34,15 +34,17 @@ file static class Program
                 .AddWeb();
 
             await using var app = builder.Build();
-            
+
             if (app.Environment.IsProduction()) app.UseHsts();
 
             app.UseHttpsRedirection();
-            
+
             if (app.Environment.IsDevelopment())
             {
                 app.MapOpenApi();
+#if UseScalarAspNetCore
                 app.MapScalarApiReference();
+#endif
             }
 
             app.MapHealthChecks("/health");

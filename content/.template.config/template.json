@@ -24,5 +24,12 @@
         }
       ]
     }
-  ]
+  ],
+  "symbols": {
+    "UseScalarAspNetCore": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": false
+    }
+  }
 }

@@ -6,7 +6,9 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks"/>
+        <!--#if(UseScalarAspNetCore)-->
         <PackageReference Include="Scalar.AspNetCore"/>
+        <!--#endif-->
         <PackageReference Include="Serilog.AspNetCore"/>
     </ItemGroup>
     <ItemGroup>
