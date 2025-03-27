@@ -13,7 +13,9 @@
         <!--#if(UseScalarAspNetCore)-->
         <PackageReference Include="Scalar.AspNetCore"/>
         <!--#endif-->
+        <!--#if(UseSerilogAspNetCore)-->
         <PackageReference Include="Serilog.AspNetCore"/>
+        <!--#endif-->
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\Application\Application.csproj"/>

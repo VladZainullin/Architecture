@@ -35,6 +35,11 @@
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": false
+    },
+    "UseSerilogAspNetCore": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": false
     }
   }
 }

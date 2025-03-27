@@ -1,6 +1,8 @@
 using Application;
 using Persistence;
+#if UseSerilogAspNetCore
 using Serilog;
+#endif
 #if UseScalarAspNetCore
 using Scalar.AspNetCore;
 #endif
@@ -13,6 +15,7 @@ file static class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
+#if UseSerilogAspNetCore
         await using var logger = new LoggerConfiguration()
             .ReadFrom.Configuration(builder.Configuration)
             .CreateLogger();
@@ -20,7 +23,7 @@ file static class Program
         try
         {
             builder.Host.UseSerilog(logger);
-
+#endif
             if (builder.Environment.IsDevelopment())
                 builder.Host.UseDefaultServiceProvider(static serviceProviderOptions =>
                 {
@@ -54,6 +57,7 @@ file static class Program
             app.MapHealthChecks("/health");
 
             await app.RunAsync();
+#if UseSerilogAspNetCore
         }
         catch (HostAbortedException)
         {
@@ -62,5 +66,6 @@ file static class Program
         {
             logger.Fatal(e, "Application not started");
         }
+#endif
     }
 }
