@@ -8,7 +8,7 @@ internal sealed class DbContextAdapter(AppDbContext context) :
     IMigrationContext,
     ITransactionContext
 {
-    public Task<int> SaveChangesAsync(CancellationToken cancellationToken)
+    public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
         return context.SaveChangesAsync(cancellationToken);
     }
@@ -18,17 +18,17 @@ internal sealed class DbContextAdapter(AppDbContext context) :
         return context.Database.MigrateAsync(cancellationToken);
     }
 
-    public Task BeginTransactionAsync(CancellationToken cancellationToken)
+    public Task BeginTransactionAsync(CancellationToken cancellationToken = default)
     {
         return context.Database.BeginTransactionAsync(cancellationToken);
     }
 
-    public Task CommitTransactionAsync(CancellationToken cancellationToken)
+    public Task CommitTransactionAsync(CancellationToken cancellationToken = default)
     {
         return context.Database.CommitTransactionAsync(cancellationToken);
     }
 
-    public Task RollbackTransactionAsync(CancellationToken cancellationToken)
+    public Task RollbackTransactionAsync(CancellationToken cancellationToken = default)
     {
         return context.Database.RollbackTransactionAsync(cancellationToken);
     }
