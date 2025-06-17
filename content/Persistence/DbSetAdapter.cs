@@ -7,6 +7,7 @@ namespace Persistence;
 
 internal class DbSetAdapter<T>(DbContext context) : IDbSet<T> where T : class
 {
+    private LocalViewAdapter<T>? _local;
     private readonly DbSet<T> _set = context.Set<T>();
 
     public virtual void Update(T entity)
@@ -48,6 +49,8 @@ internal class DbSetAdapter<T>(DbContext context) : IDbSet<T> where T : class
     {
         _set.AttachRange(entities);
     }
+
+    public ILocalView<T> Local => _local ??= new LocalViewAdapter<T>(context);
 
     public virtual IEnumerator<T> GetEnumerator()
     {

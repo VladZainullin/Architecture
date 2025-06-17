@@ -1,20 +1,22 @@
 namespace Persistence.Contracts;
 
-public interface IDbSet<T> : IQueryable<T>, IAsyncEnumerable<T>
+public interface IDbSet<TEntity> : IQueryable<TEntity>, IAsyncEnumerable<TEntity> where TEntity : class
 {
-    void Add(T entity);
+    void Add(TEntity entity);
 
-    void AddRange(IEnumerable<T> entities);
+    void AddRange(IEnumerable<TEntity> entities);
 
-    void Update(T entity);
+    void Update(TEntity entity);
 
-    void UpdateRange(IEnumerable<T> entities);
+    void UpdateRange(IEnumerable<TEntity> entities);
 
-    void Remove(T entity);
+    void Remove(TEntity entity);
 
-    void RemoveRange(IEnumerable<T> entities);
+    void RemoveRange(IEnumerable<TEntity> entities);
 
-    void Attach(T entity);
+    void Attach(TEntity entity);
 
-    void AttachRanga(IEnumerable<T> entities);
+    void AttachRanga(IEnumerable<TEntity> entities);
+    
+    ILocalView<TEntity> Local { get; }
 }
