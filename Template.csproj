@@ -21,7 +21,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Content Include="content\**">
+        <Content Include="content\**" Exclude="content\**\bin\**;content\**\obj\**;.gitignore">
             <PackagePath>content</PackagePath>
         </Content>
     </ItemGroup>
