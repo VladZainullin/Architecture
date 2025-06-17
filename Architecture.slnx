@@ -1,0 +1,22 @@
+<Solution>
+    <Folder Name="/content/"/>
+    <Folder Name="/content/src/">
+        <Project Path="content/Application/Application.csproj"/>
+        <Project Path="content/Domain/Domain.csproj"/>
+        <Project Path="content/Web/Web.csproj"/>
+    </Folder>
+    <Folder Name="/content/src/contracts/">
+        <Project Path="content/Application.Contracts/Application.Contracts.csproj"/>
+        <Project Path="content/Persistence.Contracts/Persistence.Contracts.csproj"/>
+    </Folder>
+    <Folder Name="/content/src/infrastructure/">
+        <Project Path="content/Persistence/Persistence.csproj"/>
+    </Folder>
+    <Folder Name="/content/Solution Items/">
+        <File Path="content/.gitignore"/>
+        <File Path="content/Directory.Build.props"/>
+        <File Path="content/Directory.Packages.props"/>
+        <File Path="content/global.json"/>
+        <File Path="content/NuGet.config"/>
+    </Folder>
+</Solution>
