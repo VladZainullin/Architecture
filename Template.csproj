@@ -1,11 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <TargetFramework>net9.0</TargetFramework>
         <IncludeBuildOutput>False</IncludeBuildOutput>
         <IncludeSource>False</IncludeSource>
         <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
         <EnableDefaultItems>False</EnableDefaultItems>
+        <UsingToolTemplateLocalizer>true</UsingToolTemplateLocalizer>
         <IsPackable>true</IsPackable>
         <IsShipping>true</IsShipping>
         <IsShippingPackage>true</IsShippingPackage>
@@ -17,11 +19,11 @@
         <PackageProjectUrl>https://github.com/VladZainullin/Architecture</PackageProjectUrl>
         <PackageType>Template</PackageType>
         <SuppressDependenciesWhenPacking>True</SuppressDependenciesWhenPacking>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <ExcludeFromSourceOnlyBuild>true</ExcludeFromSourceOnlyBuild>
     </PropertyGroup>
 
     <ItemGroup>
-        <Content Include="content\**" Exclude="content\**\bin\**;content\**\obj\**;.gitignore">
+        <Content Include="content\**" Exclude="content\**\bin\**;content\**\obj\**;content\.gitignore">
             <PackagePath>content</PackagePath>
         </Content>
     </ItemGroup>
