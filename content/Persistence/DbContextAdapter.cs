@@ -3,10 +3,11 @@ using Persistence.Contracts;
 
 namespace Persistence;
 
-internal sealed class DbContextAdapter(AppDbContext context) :
+internal sealed class DbContextAdapter<TDbContext>(TDbContext context) :
     IDbContext,
     IMigrationContext,
     ITransactionContext
+    where TDbContext : DbContext
 {
     public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {

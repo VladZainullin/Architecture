@@ -30,10 +30,10 @@ public static class DependencyInjection
         });
 
         builder.Services.AddScoped<DbContext>(static sp => sp.GetRequiredService<AppDbContext>());
-        builder.Services.AddScoped<DbContextAdapter>();
+        builder.Services.AddScoped<DbContextAdapter<AppDbContext>>();
 
         var getDbContextAdapter = 
-            static (IServiceProvider sp) => sp.GetRequiredService<DbContextAdapter>();
+            static (IServiceProvider sp) => sp.GetRequiredService<DbContextAdapter<AppDbContext>>();
         
         builder.Services.AddScoped<IDbContext>(getDbContextAdapter);
         builder.Services.AddScoped<IMigrationContext>(getDbContextAdapter);
