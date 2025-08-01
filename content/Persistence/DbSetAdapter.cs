@@ -5,11 +5,11 @@ using Persistence.Contracts;
 
 namespace Persistence;
 
-internal class DbSetAdapter<TEntity, TDbContext>(TDbContext context) : IDbSet<TEntity> 
+internal class DbSetAdapter<TEntity, TContext>(TContext context) : IDbSet<TEntity> 
     where TEntity : class
-    where TDbContext : DbContext
+    where TContext : DbContext
 {
-    private LocalViewAdapter<TEntity>? _local;
+    private LocalViewAdapter<TContext, TEntity>? _local;
     private readonly DbSet<TEntity> _set = context.Set<TEntity>();
 
     public virtual void Update(TEntity entity)
@@ -52,7 +52,7 @@ internal class DbSetAdapter<TEntity, TDbContext>(TDbContext context) : IDbSet<TE
         _set.AttachRange(entities);
     }
 
-    public ILocalView<TEntity> Local => _local ??= new LocalViewAdapter<TEntity>(context);
+    public ILocalView<TEntity> Local => _local ??= new LocalViewAdapter<TContext, TEntity>(context);
 
     public virtual IEnumerator<TEntity> GetEnumerator()
     {
