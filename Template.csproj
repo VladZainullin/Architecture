@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net9.0</TargetFramework>
+        <TargetFramework>net10.0</TargetFramework>
         <IncludeBuildOutput>False</IncludeBuildOutput>
         <IncludeSource>False</IncludeSource>
         <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
@@ -12,7 +12,7 @@
         <NoPackageAnalysis>true</NoPackageAnalysis>
         <PackageId>Architecture.Solution.Template</PackageId>
         <Authors>Vladislav Zainullin</Authors>
-        <Description>Architecture solution template for .NET 9</Description>
+        <Description>Architecture solution template for .NET 10</Description>
         <language>en-US</language>
         <PackageProjectUrl>https://github.com/VladZainullin/Architecture</PackageProjectUrl>
         <PackageType>Template</PackageType>
