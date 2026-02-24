@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Persistence;
 #if UseSerilogAspNetCore
@@ -10,6 +11,13 @@ public static class DependencyInjection
 {
     public static void AddWeb(this WebApplicationBuilder builder)
     {
+        builder.Services.Configure<ForwardedHeadersOptions>(static forwardedHeadersOptions =>
+        {
+            forwardedHeadersOptions.ForwardedHeaders =
+                ForwardedHeaders.XForwardedFor |
+                ForwardedHeaders.XForwardedProto;
+        });
+        
         builder.Services.Configure<KestrelServerOptions>(static kestrelServerOptions =>
         {
             kestrelServerOptions.AddServerHeader = false;

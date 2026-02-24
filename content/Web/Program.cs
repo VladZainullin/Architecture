@@ -31,6 +31,8 @@ file static class Program
 
             await using var app = builder.Build();
 
+            app.UseForwardedHeaders();
+
             if (app.Environment.IsProduction()) app.UseHsts();
 
             app.UseHttpsRedirection();
