@@ -22,19 +22,12 @@ file static class Program
 
         try
         {
-            builder.Host.UseSerilog(logger);
 #endif
-            if (builder.Environment.IsDevelopment())
-                builder.Host.UseDefaultServiceProvider(static serviceProviderOptions =>
-                {
-                    serviceProviderOptions.ValidateScopes = true;
-                    serviceProviderOptions.ValidateOnBuild = true;
-                });
-
             builder
                 .AddPersistence()
-                .AddApplication()
-                .AddWeb();
+                .AddApplication();
+            
+            builder.AddWeb();
 
             await using var app = builder.Build();
 
