@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Persistence;
 #if UseSerilogAspNetCore
@@ -21,6 +22,15 @@ public static class DependencyInjection
         builder.Services.Configure<KestrelServerOptions>(static kestrelServerOptions =>
         {
             kestrelServerOptions.AddServerHeader = false;
+        });
+        
+        builder.Services.AddResponseCompression(static options =>
+        {
+            options.EnableForHttps = true;
+            options.MimeTypes = ResponseCompressionDefaults.MimeTypes;
+
+            options.Providers.Add<GzipCompressionProvider>();
+            options.Providers.Add<BrotliCompressionProvider>();
         });
 
 #if UseSerilogAspNetCore

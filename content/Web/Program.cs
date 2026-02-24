@@ -33,9 +33,15 @@ file static class Program
 
             app.UseForwardedHeaders();
 
+#if UseSerilogAspNetCore
+            app.UseSerilogRequestLogging();
+#endif
+            
             if (app.Environment.IsProduction()) app.UseHsts();
 
             app.UseHttpsRedirection();
+            
+            app.UseResponseCompression();
 
             if (app.Environment.IsDevelopment())
             {
