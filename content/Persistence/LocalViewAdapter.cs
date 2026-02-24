@@ -4,8 +4,9 @@ using Persistence.Contracts;
 
 namespace Persistence;
 
-internal class LocalViewAdapter<TEntity>(DbContext context) : ILocalView<TEntity>
+internal class LocalViewAdapter<TContext, TEntity>(TContext context) : ILocalView<TEntity>
     where TEntity : class
+    where TContext : DbContext
 {
     public IEnumerator<TEntity> GetEnumerator()
     {

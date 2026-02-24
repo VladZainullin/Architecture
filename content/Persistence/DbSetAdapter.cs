@@ -5,65 +5,67 @@ using Persistence.Contracts;
 
 namespace Persistence;
 
-internal class DbSetAdapter<T>(DbContext context) : IDbSet<T> where T : class
+internal class DbSetAdapter<TContext, TEntity>(TContext context) : IDbSet<TEntity>
+    where TEntity : class
+    where TContext : DbContext
 {
-    private LocalViewAdapter<T>? _local;
-    private readonly DbSet<T> _set = context.Set<T>();
+    private LocalViewAdapter<TContext, TEntity>? _local;
+    private readonly DbSet<TEntity> _set = context.Set<TEntity>();
 
-    public virtual void Update(T entity)
+    public virtual void Update(TEntity entity)
     {
         _set.Update(entity);
     }
 
-    public virtual void UpdateRange(IEnumerable<T> entities)
+    public virtual void UpdateRange(IEnumerable<TEntity> entities)
     {
         _set.UpdateRange(entities);
     }
 
-    public virtual void Add(T entity)
+    public virtual void Add(TEntity entity)
     {
         _set.Add(entity);
     }
 
-    public virtual void AddRange(IEnumerable<T> entities)
+    public virtual void AddRange(IEnumerable<TEntity> entities)
     {
         _set.AddRange(entities);
     }
 
-    public virtual void Remove(T entity)
+    public virtual void Remove(TEntity entity)
     {
         _set.Remove(entity);
     }
 
-    public virtual void RemoveRange(IEnumerable<T> entities)
+    public virtual void RemoveRange(IEnumerable<TEntity> entities)
     {
         _set.RemoveRange(entities);
     }
 
-    public virtual void Attach(T entity)
+    public virtual void Attach(TEntity entity)
     {
         _set.Attach(entity);
     }
 
-    public virtual void AttachRanga(IEnumerable<T> entities)
+    public virtual void AttachRanga(IEnumerable<TEntity> entities)
     {
         _set.AttachRange(entities);
     }
 
-    public ILocalView<T> Local => _local ??= new LocalViewAdapter<T>(context);
+    public ILocalView<TEntity> Local => _local ??= new LocalViewAdapter<TContext, TEntity>(context);
 
-    public virtual IEnumerator<T> GetEnumerator()
+    public virtual IEnumerator<TEntity> GetEnumerator()
     {
-        return ((IQueryable<T>)_set).GetEnumerator();
+        return ((IQueryable<TEntity>)_set).GetEnumerator();
     }
 
-    public virtual Type ElementType => ((IQueryable<T>)_set).ElementType;
-    public virtual Expression Expression => ((IQueryable<T>)_set).Expression;
-    public virtual IQueryProvider Provider => ((IQueryable<T>)_set).Provider;
+    public virtual Type ElementType => ((IQueryable<TEntity>)_set).ElementType;
+    public virtual Expression Expression => ((IQueryable<TEntity>)_set).Expression;
+    public virtual IQueryProvider Provider => ((IQueryable<TEntity>)_set).Provider;
 
-    public virtual IAsyncEnumerator<T> GetAsyncEnumerator(CancellationToken cancellationToken = new())
+    public virtual IAsyncEnumerator<TEntity> GetAsyncEnumerator(CancellationToken cancellationToken)
     {
-        return ((IAsyncEnumerable<T>)_set).GetAsyncEnumerator(cancellationToken);
+        return ((IAsyncEnumerable<TEntity>)_set).GetAsyncEnumerator(cancellationToken);
     }
 
     IEnumerator IEnumerable.GetEnumerator()

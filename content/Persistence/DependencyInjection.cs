@@ -13,32 +13,38 @@ public static class DependencyInjection
     public static IHostApplicationBuilder AddPersistence(this IHostApplicationBuilder builder)
     {
         builder.Services.AddOptions<NpgsqlConnectionStringBuilder>().BindConfiguration("Postgres");
-        builder.Services.AddDbContextPool<AppDbContext>(static (sp, options) =>
-        {
-            var npgsqlConnectionStringBuilderOptions = sp.GetRequiredService<IOptions<NpgsqlConnectionStringBuilder>>();
-            var npgsqlConnectionStringBuilder = npgsqlConnectionStringBuilderOptions.Value;
-            var connectionString = npgsqlConnectionStringBuilder.ConnectionString;
-            options
-                .UseSnakeCaseNamingConvention()
-                .UseNpgsql(connectionString, npgsqlDbContextOptionsBuilder =>
-                {
-                    npgsqlDbContextOptionsBuilder.MigrationsAssembly("Persistence");
-                    npgsqlDbContextOptionsBuilder.MigrationsHistoryTable(
-                        HistoryRepository.DefaultTableName,
-                        npgsqlConnectionStringBuilder.SearchPath);
-                });
-        });
+        
+        builder.Services.AddDbContextPool<AppDbContext>(ConfigureDbContext);
+        builder.Services.AddPooledDbContextFactory<AppDbContext>(ConfigureDbContext);
 
-        builder.Services.AddScoped<DbContext>(static sp => sp.GetRequiredService<AppDbContext>());
-        builder.Services.AddScoped<DbContextAdapter>();
+        builder.Services.AddScoped<AppDbContext>(static sp => sp.GetRequiredService<AppDbContext>());
+        builder.Services.AddScoped<DbContextAdapter<AppDbContext>>();
+        
+        builder.Services.AddSingleton<IDbContextFactory, DbContextFactoryAdapter<AppDbContext>>();
 
         var getDbContextAdapter = 
-            static (IServiceProvider sp) => sp.GetRequiredService<DbContextAdapter>();
+            static (IServiceProvider sp) => sp.GetRequiredService<DbContextAdapter<AppDbContext>>();
         
         builder.Services.AddScoped<IDbContext>(getDbContextAdapter);
         builder.Services.AddScoped<IMigrationContext>(getDbContextAdapter);
         builder.Services.AddScoped<ITransactionContext>(getDbContextAdapter);
 
         return builder;
+    }
+
+    private static void ConfigureDbContext(IServiceProvider serviceProvider, DbContextOptionsBuilder options)
+    {
+        var npgsqlConnectionStringBuilderOptions = serviceProvider.GetRequiredService<IOptions<NpgsqlConnectionStringBuilder>>();
+        var npgsqlConnectionStringBuilder = npgsqlConnectionStringBuilderOptions.Value;
+        var connectionString = npgsqlConnectionStringBuilder.ConnectionString;
+        options
+            .UseSnakeCaseNamingConvention()
+            .UseNpgsql(connectionString, npgsqlDbContextOptionsBuilder =>
+            {
+                npgsqlDbContextOptionsBuilder.MigrationsAssembly("Persistence");
+                npgsqlDbContextOptionsBuilder.MigrationsHistoryTable(
+                    HistoryRepository.DefaultTableName,
+                    npgsqlConnectionStringBuilder.SearchPath);
+            });
     }
 }
