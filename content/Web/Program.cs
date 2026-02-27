@@ -67,10 +67,6 @@ file static class Program
         {
             logger.Fatal(e, "Application not started");
         }
-        finally
-        {
-            await logger.CloseAndFlashAsync();
-        }
 #endif
     }
 }
