@@ -21,6 +21,16 @@
           "rename": {
             "gitignore": ".gitignore"
           }
+        },
+        {
+          "condition": "(solution-format == \"sln\")",
+          "include": [ "Architecture.sln" ],
+          "exclude": [ "Architecture.slnx" ]
+        },
+        {
+          "condition": "(solution-format == \"slnx\")",
+          "include": [ "Architecture.slnx" ],
+          "exclude": [ "Architecture.sln" ]
         }
       ]
     }

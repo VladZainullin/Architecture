@@ -21,9 +21,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Content Include="content\**" Exclude="content\**\bin\**;content\**\obj\**;.gitignore;content\.gitignore">
+        <Content Include="content\**" Exclude="content\**\bin\**;content\**\obj\**;.gitignore;content\.gitignore;content/.idea/**">
             <PackagePath>content</PackagePath>
         </Content>
     </ItemGroup>
-
+    
 </Project>
