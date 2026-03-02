@@ -29,17 +29,17 @@
     "UseScalarAspNetCore": {
       "type": "parameter",
       "datatype": "bool",
-      "defaultValue": false
+      "defaultValue": "false"
     },
     "UseMiniProfilerAspNetCore": {
       "type": "parameter",
       "datatype": "bool",
-      "defaultValue": false
+      "defaultValue": "false"
     },
     "UseSerilogAspNetCore": {
       "type": "parameter",
       "datatype": "bool",
-      "defaultValue": false
+      "defaultValue": "false"
     }
   }
 }
