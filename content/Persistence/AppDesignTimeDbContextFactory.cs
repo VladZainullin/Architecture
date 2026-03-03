@@ -20,8 +20,8 @@ internal sealed class AppDesignTimeDbContextFactory : IDesignTimeDbContextFactor
         var connectionString = environmentVariablesSection
             .GetChildren()
             .Where(static section => section.Key.StartsWith("Postgres__"))
-            .Select(static section => section.Key.Replace("Postgres__", string.Empty) + ':' + section.Value)
-            .Aggregate(static (firstPart, secondPart) => firstPart + secondPart);
+            .Select(static section => section.Key.Replace("Postgres__", string.Empty) + '=' + section.Value)
+            .Aggregate(static (firstPart, secondPart) => firstPart + ';' + secondPart);
 
         var dbContextOptionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
 
