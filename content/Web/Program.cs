@@ -45,12 +45,12 @@ file static class Program
 
             if (app.Environment.IsDevelopment())
             {
-                app.MapOpenApi();
 #if UseMiniProfilerAspNetCore
                 app.UseMiniProfiler();
 #endif
 
 #if UseScalarAspNetCore
+                app.MapOpenApi();
                 app.MapScalarApiReference();
 #endif
             }

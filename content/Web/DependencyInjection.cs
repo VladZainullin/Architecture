@@ -47,6 +47,9 @@ public static class DependencyInjection
         builder.Services.AddMiniProfiler().AddEntityFramework();
 #endif
         builder.Services.AddHealthChecks().AddPersistenceCheck();
+        
+#if UseScalarAspNetCore
         builder.Services.AddOpenApi();
+#endif
     }
 }
