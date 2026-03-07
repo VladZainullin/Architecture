@@ -1,6 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -11,6 +10,7 @@
         <!--#endif-->
         <!--#if(UseScalarAspNetCore)-->
         <PackageReference Include="Scalar.AspNetCore"/>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi"/>
         <!--#endif-->
         <!--#if(UseSerilogAspNetCore)-->
         <PackageReference Include="Serilog.AspNetCore"/>
