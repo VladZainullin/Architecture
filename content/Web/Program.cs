@@ -16,7 +16,7 @@ file static class Program
         var builder = WebApplication.CreateBuilder(args);
 
 #if UseSerilogAspNetCore
-        await using var logger = new LoggerConfiguration()
+        Log.Logger = new LoggerConfiguration()
             .ReadFrom.Configuration(builder.Configuration)
             .CreateLogger();
 
@@ -65,7 +65,11 @@ file static class Program
         }
         catch (Exception e)
         {
-            logger.Fatal(e, "Application not started");
+            Log.Fatal(e, "Application not started");
+        }
+        finally
+        {
+            await Log.CloseAndFlushAsync();
         }
 #endif
     }
